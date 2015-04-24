@@ -1,0 +1,70 @@
+---
+title       : course project
+subtitle    : predict car's fuel efficiency 
+author      : Land
+job         : please use right or left arrow key to nevigate these slides.
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Predictive the fuel efficiency of your car
+
+* Fuel efficiency is one of features that we consider when we buying a car.
+
+* Here, we define the fuel efficiency as “Miles/ gallon”.
+
+* we develop the predicting model by use the data "mtcars"
+
+```{r}
+head(mtcars)
+```
+
+--- .class #id 
+
+## Building Linear Regression Model
+
+* We choose 2 features, type of transmission and 1/4 mile time as predictors.
+
+* The “Miles/ gallon” is our outcome. 
+
+* Use simple linear regression
+
+* R code:
+```{r, cache=TRUE, results='hide'}
+fit2 <- lm(mpg ~ factor(am) + qsec, mtcars)
+```
+
+---
+
+## Result
+
+```{r, cache=TRUE, echo=FALSE, results='hide'}
+data(mtcars)
+fit2 <- lm(mpg ~ factor(am) + qsec, mtcars)
+```
+
+```{r, cache=TRUE}
+summary(fit2)$coefficients
+```
+
+So our prediction model will be:
+
+* If the transmission of the car is automatic:
+-18.88 + 1.98 * 1/4 mile time
+
+* If the trans mission of the car is manual:
+-18.88 + 8.87 + 1.98 * 1/4 mile time  
+
+*you can find the app here:
+[https://land.shinyapps.io/car-app/](https://land.shinyapps.io/car-app/)
+
+---
+## Reference
+
+Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411.
+
+
